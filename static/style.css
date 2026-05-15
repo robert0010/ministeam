@@ -1,0 +1,151 @@
+/* Reset básico */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #1b2838; /* Fundo escuro clássico da Steam */
+    color: #c7d5e0; /* Texto cinza claro */
+}
+
+/* Barra de Navegação Atualizada (com Flexbox) */
+.navbar {
+    background-color: #171a21;
+    padding: 15px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-left nav {
+    display: flex;
+    gap: 25px;
+}
+
+.navbar .logo {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar nav a {
+    color: #dcdedf;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.navbar nav a:hover {
+    color: #66c0f4;
+}
+
+/* Estilo da Foto de Perfil (Avatar) */
+.user-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #66c0f4;
+    background-color: #2a475e;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.user-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+h1 { color: #ffffff; margin-bottom: 20px; font-weight: 300; }
+
+/* Grid de Jogos (Página Inicial) */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.game-card {
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+.game-card:hover {
+    transform: scale(1.02);
+    background-color: #2a475e;
+}
+.game-card img { width: 100%; height: 150px; object-fit: cover; }
+.game-info { padding: 15px; }
+.game-info h3 { color: #ffffff; margin-bottom: 10px; font-size: 16px; }
+.price-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+/* Página de Detalhes do Jogo */
+.game-detail { background-color: rgba(0,0,0,0.4); padding: 20px; }
+.game-content { display: flex; gap: 20px; margin-top: 20px; }
+.main-img { width: 60%; object-fit: cover; }
+.game-sidebar { width: 40%; display: flex; flex-direction: column; gap: 15px; }
+.description { font-size: 14px; line-height: 1.5; }
+.rating { color: #8f98a0; font-size: 12px; }
+.age-badge { padding: 3px 8px; border-radius: 3px; font-weight: bold; color: white; background-color: #555; }
+.age-badge.mature { background-color: #b52a1c; }
+
+/* Caixa de Compra */
+.purchase-box {
+    background: linear-gradient(to right, #1a2a37, #213545);
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: auto;
+}
+.price-large {
+    display: block;
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+.age-gate input {
+    padding: 8px;
+    border-radius: 3px;
+    border: none;
+    background: #1b2838;
+    color: white;
+    margin-bottom: 10px;
+    width: 100%; /* Mudou de 100px para 100% */
+}
+
+/* Carrinho */
+.cart-list { list-style: none; background: rgba(0,0,0,0.2); padding: 20px; margin-bottom: 20px; }
+.cart-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #2a475e; }
+.cart-summary { background: rgba(0,0,0,0.4); padding: 20px; text-align: right; }
+.total-price { color: #66c0f4; }
+
+/* Botões */
+button, .btn-blue, .btn-green {
+    border: none; padding: 10px 15px; border-radius: 2px;
+    cursor: pointer; font-size: 14px; text-decoration: none; display: inline-block;
+}
+.btn-blue { background-color: #2a475e; color: #66c0f4; }
+.btn-blue:hover { background-color: #66c0f4; color: white; }
+.btn-green { background: linear-gradient(to right, #79a016 5%, #5c7e10 95%); color: #d2efa9; }
+.btn-green:hover { background: linear-gradient(to right, #8ed615 5%, #6ba511 95%); color: white; }
+
+/* Mensagens de Alerta (Flash) */
+.flash-messages { margin-bottom: 20px; }
+.flash { padding: 10px; border-radius: 2px; font-size: 14px; color: white; background-color: #b52a1c; transition: opacity 0.5s ease; }
+.flash.success { background-color: #5c7e10; }

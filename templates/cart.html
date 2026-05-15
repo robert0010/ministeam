@@ -1,35 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Seu Carrinho</title>
-</head>
-<body>
-<a href="{{ url_for('index') }}">Continuar Comprando</a>
-<hr>
+{% extends 'base.html' %}
 
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul style="color: green;">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
+{% block title %}Seu Carrinho - Ministeam{% endblock %}
 
+{% block content %}
 <h1>Seu Carrinho de Compras</h1>
-{% if cart %}
-<ul>
-    {% for item in cart %}
-    <li>{{ item.name }} - R$ {{ "%.2f"|format(item.price) }}</li>
-    {% endfor %}
-</ul>
-<h3>Total: R$ {{ "%.2f"|format(total) }}</h3>
 
-<button>Finalizar Compra</button>
-{% else %}
-<p>Seu carrinho está vazio.</p>
-{% endif %}
-</body>
-</html>
+<div class="cart-container">
+    {% if cart %}
+    <ul class="cart-list">
+        {% for item in cart %}
+        <li class="cart-item">
+            <span class="item-name">{{ item.name }}</span>
+            <span class="item-price">R$ {{ "%.2f"|format(item.price) }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="cart-summary">
+        <h3>Total Estimado: <span class="total-price">R$ {{ "%.2f"|format(total) }}</span></h3>
+        <br>
+        <a href="{{ url_for('checkout') }}" class="btn-green" style="text-decoration: none;">
+            Comprar para a minha conta
+        </a>
+    </div>
+    {% else %}
+    <div style="background: rgba(0,0,0,0.2); padding: 30px; text-align: center;">
+        <p style="margin-bottom: 20px;">Seu carrinho está vazio.</p>
+        <a href="{{ url_for('index') }}" class="btn-blue">Continuar Comprando</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Loja de Jogos - Recomendações</title>
-</head>
-<body>
-<h1>Bem-vindo à miniSteam</h1>
-<a href="{{ url_for('cart') }}">Ver Carrinho</a>
-<hr>
+{% extends 'base.html' %}
 
-<h2>Recomendações para Você</h2>
-<ul>
+{% block title %}Destaques - Ministeam{% endblock %}
+
+{% block content %}
+<h1>Destaques e Recomendações</h1>
+<div class="game-grid">
     {% for id, game in games.items() %}
-    <li>
-        <strong>{{ game.name }}</strong> - R$ {{ "%.2f"|format(game.price) }}
-        <a href="{{ url_for('game', game_id=id) }}"><button>Ver Jogo</button></a>
-    </li>
+    <div class="game-card">
+        <img src="{{ url_for('static', filename='images/jogo' ~ game.id ~ '.jpg') }}" alt="{{ game.name }}" onerror="this.style.display='none'">
+        <div class="game-info">
+            <h3>{{ game.name }}</h3>
+            <div class="price-action">
+                <span class="price">R$ {{ "%.2f"|format(game.price) }}</span>
+                <a href="{{ url_for('game', game_id=id) }}" class="btn-blue">Ver Detalhes</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-</ul>
-</body>
-</html>
+</div>
+{% endblock %}
