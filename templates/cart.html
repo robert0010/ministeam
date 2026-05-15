@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Seu Carrinho</title>
+</head>
+<body>
+<a href="{{ url_for('index') }}">Continuar Comprando</a>
+<hr>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul style="color: green;">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<h1>Seu Carrinho de Compras</h1>
+{% if cart %}
+<ul>
+    {% for item in cart %}
+    <li>{{ item.name }} - R$ {{ "%.2f"|format(item.price) }}</li>
+    {% endfor %}
+</ul>
+<h3>Total: R$ {{ "%.2f"|format(total) }}</h3>
+
+<button>Finalizar Compra</button>
+{% else %}
+<p>Seu carrinho está vazio.</p>
+{% endif %}
+</body>
+</html>

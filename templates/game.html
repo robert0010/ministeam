@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ game.name }}</title>
+</head>
+<body>
+<a href="{{ url_for('index') }}">Voltar para a Loja</a>
+<hr>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul style="color: red;">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<h1>{{ game.name }}</h1>
+<p><strong>Descrição:</strong> {{ game.description }}</p>
+<p><strong>Preço:</strong> R$ {{ "%.2f"|format(game.price) }}</p>
+<p><strong>Classificação Indicativa:</strong>
+    {% if game.age_rating == 0 %} Livre {% else %} {{ game.age_rating }} anos {% endif %}
+</p>
+
+<form action="{{ url_for('add_to_cart', game_id=game.id) }}" method="POST">
+    <label for="age">Para prosseguir, informe sua idade (anos):</label>
+    <input type="number" id="age" name="age" required min="1">
+    <br><br>
+    <button type="submit">Adicionar ao Carrinho</button>
+</form>
+</body>
+</html>

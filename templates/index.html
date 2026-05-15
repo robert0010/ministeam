@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja de Jogos - Recomendações</title>
+</head>
+<body>
+<h1>Bem-vindo à miniSteam</h1>
+<a href="{{ url_for('cart') }}">Ver Carrinho</a>
+<hr>
+
+<h2>Recomendações para Você</h2>
+<ul>
+    {% for id, game in games.items() %}
+    <li>
+        <strong>{{ game.name }}</strong> - R$ {{ "%.2f"|format(game.price) }}
+        <a href="{{ url_for('game', game_id=id) }}"><button>Ver Jogo</button></a>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
